@@ -38,6 +38,10 @@ async function processDecklist(decklist) {
     }
   });
 
+  // DEBUG:
+  console.log("CARDS TO OMIT");
+  console.log(cards_to_omit);
+
   // Display output and warnings
   document.getElementById("cards-include").textContent = cards_to_include;
   if (cards_to_omit.length > 0) {
