@@ -9,7 +9,7 @@ async function fetchBannedCards() {
     return new Set(
       data
         .split("\n")
-        .map((card) => card.trim().replace("1 ", ""))
+        .map((card) => card.trim().split(" ", 2)[1]?.trim())
         .filter(Boolean)
     );
   } catch (error) {
@@ -28,11 +28,13 @@ async function processDecklist(decklist) {
 
   lines.forEach((line) => {
     // Extract card name after the first space
+    // e.g. [3 Vampiric Tutor] becomes [Vampiric Tutor]
     const cardName = line.split(" ", 2)[1]?.trim();
 
     // Check for banned cards
+    console.log("Checking Card: " + line);
     if (bannedCards.has(cardName)) {
-      cards_to_omit.push(cardName);
+      cards_to_omit.push(line);
     } else {
       cards_to_include.push(line);
     }
