@@ -34,7 +34,7 @@ async function processDecklist(decklist) {
     if (bannedCards.has(cardName)) {
       cards_to_omit.push(cardName);
     } else {
-      cards_to_include += line + "\n"; // Include valid card
+      cards_to_include.push(cardName);
     }
   });
 
