@@ -1,0 +1,40 @@
+1 Ancient Tomb
+1 Badlands
+1 Bayou
+1 Chrome Mox
+1 Cyclonic Rift
+1 Demonic Tutor
+1 Dockside Extortionist
+1 Enlightened Tutor
+1 Gaea's Cradle
+1 Grim Monolith
+1 Imperial Seal
+1 Jeweled Lotus
+1 Mana Crypt
+1 Mana Vault
+1 Metalworker
+1 Mishra's Workshop
+1 Mox Diamond
+1 Mox Opal
+1 Mystical Tutor
+1 Plateau
+1 Ragavan, Nimble Pilferer
+1 Rhystic Study
+1 Savannah
+1 Scrubland
+1 Smothering Tithe
+1 Taiga
+1 Thassa's Oracle
+1 The One Ring
+1 The Tabernacle at Pendrell Vale
+1 Tropical Island
+1 Tundra
+1 Underground Sea
+1 Vampiric Tutor
+1 Volcanic Island
+1 Worldly Tutor
+1 Island
+1 Swamp
+1 Forest
+1 Mountain
+1 Plains
