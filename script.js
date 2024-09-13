@@ -39,6 +39,8 @@ async function processDecklist(decklist) {
   });
 
   // DEBUG:
+  console.log("CARDS ON BANLIST");
+  console.log(bannedCards);
   console.log("CARDS TO INCLUDE");
   console.log(cards_to_include);
   console.log("CARDS TO OMIT");
@@ -55,6 +57,8 @@ async function processDecklist(decklist) {
 // Handle the decklist paste input and process the deck
 document.getElementById("resetDeck").addEventListener("click", () => {
   document.getElementById("decklist").value = "";
+  document.getElementById("cards-include").textContent = "";
+  document.getElementById("cards-remove").textContent = "";
 });
 
 // Handle the decklist paste input and process the deck
