@@ -34,7 +34,7 @@ async function processDecklist(decklist) {
     if (bannedCards.has(cardName)) {
       cards_to_omit.push(cardName);
     } else {
-      cards_to_include.push(cardName);
+      cards_to_include.push(line);
     }
   });
 
@@ -48,7 +48,7 @@ async function processDecklist(decklist) {
   document.getElementById("cards-include").textContent = cards_to_include.join("\n");
   if (cards_to_omit.length > 0) {
     document.getElementById("cards-remove").textContent = cards_to_omit.join("\n");
-    alert("Warning! Banned or non-proxyable cards found - see Removed Cards!");
+    alert("Warning! Banned or non-proxyable cards were removed.");
   }
 }
 
