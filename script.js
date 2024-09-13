@@ -50,16 +50,11 @@ async function processDecklist(decklist) {
   }
 }
 
-// Clear decklist: remove all input
-async function clearDecklist(decklist) {
-  decklist.value = "";
-}
-
 // Handle the decklist paste input and process the deck
 document.getElementById("clearDeck").addEventListener("click", () => {
   const decklist = document.getElementById("decklist").value;
   if (decklist.trim() !== "") {
-    clearDecklist(decklist);
+    decklist.value = "";
   }
 });
 
