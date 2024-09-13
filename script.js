@@ -18,7 +18,7 @@ async function fetchBannedCards() {
   }
 }
 
-// Process decklist: remove basic lands and check for banned cards
+// Process decklist: remove basic lands and remove banned cards
 async function processDecklist(decklist) {
   const bannedCards = await fetchBannedCards();
   const lines = decklist.split("\n").filter((line) => line.trim() !== "");
