@@ -23,7 +23,7 @@ async function processDecklist(decklist) {
   const bannedCards = await fetchBannedCards();
   const lines = decklist.split("\n").filter((line) => line.trim() !== "");
 
-  let cards_to_include = "";
+  let cards_to_include = [];
   let cards_to_omit = [];
 
   lines.forEach((line) => {
@@ -39,23 +39,22 @@ async function processDecklist(decklist) {
   });
 
   // DEBUG:
+  console.log("CARDS TO INCLUDE");
+  console.log(cards_to_include);
   console.log("CARDS TO OMIT");
   console.log(cards_to_omit);
 
   // Display output and warnings
-  document.getElementById("cards-include").textContent = cards_to_include;
+  document.getElementById("cards-include").textContent = cards_to_include.join("\n");
   if (cards_to_omit.length > 0) {
-    document.getElementById("cards-remove").textContent = cards_to_omit;
-    alert("Warning! Banned or non-proxyable cards found: " + cards_to_omit.join(", "));
+    document.getElementById("cards-remove").textContent = cards_to_omit.join("\n");
+    alert("Warning! Banned or non-proxyable cards found - see Removed Cards!");
   }
 }
 
 // Handle the decklist paste input and process the deck
-document.getElementById("clearDeck").addEventListener("click", () => {
-  const decklist = document.getElementById("decklist").value;
-  if (decklist.trim() !== "") {
-    decklist.value = "";
-  }
+document.getElementById("resetDeck").addEventListener("click", () => {
+  document.getElementById("decklist").value = "";
 });
 
 // Handle the decklist paste input and process the deck
