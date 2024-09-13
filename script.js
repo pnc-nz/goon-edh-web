@@ -23,8 +23,8 @@ async function processDecklist(decklist) {
   const bannedCards = await fetchBannedCards();
   const lines = decklist.split("\n").filter((line) => line.trim() !== "");
 
-  let output = "";
-  let warnings = [];
+  let cards_to_include = "";
+  let cards_to_omit = [];
 
   lines.forEach((line) => {
     // Extract card name after the first space
@@ -32,18 +32,32 @@ async function processDecklist(decklist) {
 
     // Check for banned cards
     if (bannedCards.has(cardName)) {
-      warnings.push(cardName);
+      cards_to_omit.push(cardName);
+    } else {
+      cards_to_include += line + "\n"; // Include valid card
     }
-
-    output += line + "\n"; // Include valid card
   });
 
   // Display output and warnings
-  document.getElementById("output").textContent = output;
-  if (warnings.length > 0) {
-    alert("Warning! Banned or non-proxyable cards found: " + warnings.join(", "));
+  document.getElementById("cards-include").textContent = cards_to_include;
+  if (cards_to_omit.length > 0) {
+    document.getElementById("cards-remove").textContent = cards_to_include;
+    alert("Warning! Banned or non-proxyable cards found: " + cards_to_omit.join(", "));
   }
 }
+
+// Clear decklist: remove all input
+async function clearDecklist(decklist) {
+  decklist.value = "";
+}
+
+// Handle the decklist paste input and process the deck
+document.getElementById("clearDeck").addEventListener("click", () => {
+  const decklist = document.getElementById("decklist").value;
+  if (decklist.trim() !== "") {
+    clearDecklist(decklist);
+  }
+});
 
 // Handle the decklist paste input and process the deck
 document.getElementById("processDeck").addEventListener("click", () => {
