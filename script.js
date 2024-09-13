@@ -41,7 +41,7 @@ async function processDecklist(decklist) {
   // Display output and warnings
   document.getElementById("cards-include").textContent = cards_to_include;
   if (cards_to_omit.length > 0) {
-    document.getElementById("cards-remove").textContent = cards_to_include;
+    document.getElementById("cards-remove").textContent = cards_to_omit;
     alert("Warning! Banned or non-proxyable cards found: " + cards_to_omit.join(", "));
   }
 }
