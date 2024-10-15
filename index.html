@@ -4,21 +4,123 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Goon Proxy Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap" rel="stylesheet" />
+    <style>
+      /* Inline styles for header */
+      h1 {
+        font-family: "Cinzel", serif;
+        font-size: 2.5em; /* Adjust size as needed */
+        text-align: left;
+        color: #000000; /* Indigo color for a fantasy touch */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional shadow for depth */
+      }
+      h2 {
+        font-family: "Cinzel", serif;
+        font-size: 1.5em; /* Adjust size as needed */
+        text-align: left;
+        color: #000000; /* Indigo color for a fantasy touch */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional shadow for depth */
+      }
+      label {
+        font-family: "Cinzel", serif;
+      }
+    </style>
   </head>
   <body>
-    <h1>Goon Proxies - Decklist Processor</h1>
+    <h1>Goon Proxies</h1>
 
-    <label for="decklist">Paste your decklist here:</label><br />
-    <textarea id="decklist" rows="15" cols="50" placeholder="420 Sol Ring&#10;69 Huge Cone&#10;..."></textarea
+    <!-- Configuration Checkboxes -->
+    <div>
+      <label>
+        <input type="checkbox" id="removeBannedCards" checked />
+        Remove Banned Cards </label
+      ><br />
+
+      <label>
+        <input type="checkbox" id="removeBasicLands" checked />
+        Remove Basic Lands </label
+      ><br />
+
+      <label>
+        <input type="checkbox" id="removeNonBasicLands" />
+        Remove Non-Basic Lands </label
+      ><br /><br />
+    </div>
+
+    <!-- Decklist Input -->
+    <label for="decklist" style="font-weight: bold">Paste your decklist here *or* an Archidekt Deck URL:</label><br />
+    <textarea
+      id="decklist"
+      rows="10"
+      cols="60"
+      placeholder="https://archidekt.com/decks/1234567/super_balanced_deck&#10;1 Sol Ring&#10;2 Huge Cone&#10;1 Island&#10;..."
+    ></textarea
     ><br /><br />
 
-    <button id="processDeck">Process Deck</button>
-    <button id="resetDeck">Reset</button>
+    <!-- Button for Deck Processing -->
+    <button id="processDeck" style="background: none; border: none; cursor: pointer; padding: 10px; outline: none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 200 60"
+        width="150"
+        height="45"
+        style="border-radius: 10px; background: #28a745; transition: background-color 0.3s"
+      >
+        <rect width="100%" height="100%" rx="10" ry="10" fill="#28a745" />
+        <text
+          x="50%"
+          y="50%"
+          dominant-baseline="middle"
+          text-anchor="middle"
+          fill="white"
+          font-size="20"
+          font-family="Cinzel"
+        >
+          Process Deck
+        </text>
+        <style>
+          svg:hover rect {
+            fill: #000000; /* Darker green on hover */
+            opacity: 0.1;
+          }
+        </style>
+      </svg>
+    </button>
+    <!-- Button for Deck Reset -->
+    <button id="resetDeck" style="background: none; border: none; cursor: pointer; padding: 10px; outline: none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 200 60"
+        width="150"
+        height="45"
+        style="border-radius: 10px; background: #dc3545; transition: background-color 0.3s"
+      >
+        <rect width="100%" height="100%" rx="10" ry="10" fill="#dc3545" />
+        <text
+          x="50%"
+          y="50%"
+          dominant-baseline="middle"
+          text-anchor="middle"
+          fill="white"
+          font-size="20"
+          font-family="Cinzel"
+        >
+          Reset
+        </text>
+        <style>
+          svg:hover rect {
+            fill: #000000; /* Darker green on hover */
+            opacity: 0.1;
+          }
+        </style>
+      </svg>
+    </button>
 
-    <h2>Processed Output:</h2>
+    <!-- Output Areas -->
+    <h2>Output:</h2>
     <pre id="cards-include"></pre>
 
-    <h2>Removed Cards:</h2>
+    <h2>Removed:</h2>
     <pre id="cards-remove"></pre>
 
     <script src="script.js"></script>
