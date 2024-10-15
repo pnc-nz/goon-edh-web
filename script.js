@@ -106,8 +106,9 @@ function getDeckIdFromUrl(deckUrl) {
 
 // Function to get deck data by deckId
 async function getDeckById(deckId) {
-  let url = `https://archidekt.com/api/decks/${deckId}/`;
-
+  let original_url = `https://archidekt.com/api/decks/${deckId}/`;
+  // const url = "https://corsproxy.io/?" + original_url;
+  const url = "https://corsproxy.io/?" + encodeURIComponent(original_url);
   if (deckId == -1) {
     url = "banlist_sample.json";
   }
@@ -124,16 +125,8 @@ async function getDeckById(deckId) {
     url = "deck_sample.json";
   }
 
-  // const url = "https://archidekt.com/api/decks/7853311/";
   const options = {
     method: "GET",
-    // headers: {
-    //   "Access-Control-Allow-Origin": "*",
-    //   "Access-Control-Allow-Methods": "GET, PUT, POST",
-    //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-    //   "User-Agent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)",
-    //   // Accept: "application/json",
-    // },
   };
 
   try {
@@ -165,23 +158,6 @@ function getCardNamesFromArchidektDeck(deckData, prepend_quantity = false) {
       const cardName = card.card.oracleCard.name;
       return prepend_quantity ? `${card.quantity} ${cardName}` : cardName;
     });
-}
-
-// DEPRECATED: Fetch banned cards list from GitHub
-async function fetchBannedCards() {
-  try {
-    const response = await fetch(bannedCardsURL);
-    const data = await response.text();
-    return new Set(
-      data
-        .split("\n")
-        .map((card) => card.trim().split(" ", 2)[1]?.trim())
-        .filter(Boolean)
-    );
-  } catch (error) {
-    console.error("Error fetching banned cards:", error);
-    return new Set();
-  }
 }
 
 function isValidExportFmt(input) {
@@ -296,7 +272,6 @@ async function processDeck(deck) {
   // Display output and warnings
   document.getElementById("cards-include").textContent = cards_to_include.join("\n");
   document.getElementById("cards-remove").textContent = cards_to_omit.join("\n");
-  navigator.clipboard.writeText(cards_to_include.join("\n"));
 
   if (cards_to_omit.length > 0 || cards_to_include.length > 0) {
     let removed = [];
@@ -304,6 +279,7 @@ async function processDeck(deck) {
     if (removeBasicLands) removed.push("Basics");
     if (removeNonBasicLands) removed.push("Non-Basics");
     if (removed.length > 0) {
+      navigator.clipboard.writeText(cards_to_include.join("\n"));
       message = `Removed [${removed.join(", ")}] cards and copied output to clipboard`;
       showMessage(message, "SUCCESS", 5000);
     } else {
